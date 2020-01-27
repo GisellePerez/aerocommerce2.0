@@ -2,14 +2,25 @@
   <br>
   <hr>
   <br>
+  
+  <div>
+    {{ products.length }}
 
-  <section class="products-actions">
+    <button> Prev </button>
+    <button> Next </button>
+  </div>
+
+  <br>
+  <hr>
+  <br>
+
+  <div class="products-actions">
     <p>sort by</p>
     <button (click)="onSortProducts(productsSortEnum.recent)">Most recent</button>
     <button (click)="onSortProducts(productsSortEnum.lowest)">Lowest price</button>
     <button (click)="onSortProducts(productsSortEnum.highest)">Highest price</button>
-  </section>
-
+  </div>
+ 
   <br>
   <hr>
   <br>
