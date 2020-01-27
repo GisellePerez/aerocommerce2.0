@@ -1,0 +1,8 @@
+<header>
+  <div *ngIf="userData">
+    <p>{{ userData.name }}</p>
+    <p>{{ userData.points }}</p>
+  </div>
+
+  <button (click)="onGetMorePoints()">Get more points</button>
+</header>

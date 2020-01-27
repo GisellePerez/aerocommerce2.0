@@ -1,0 +1,24 @@
+<section class="products-container" *ngIf="products">
+  <br>
+  <hr>
+  <br>
+
+  <section class="products-actions">
+    <p>sort by</p>
+    <button (click)="onSortProducts(productsSortEnum.recent)">Most recent</button>
+    <button (click)="onSortProducts(productsSortEnum.lowest)">Lowest price</button>
+    <button (click)="onSortProducts(productsSortEnum.highest)">Highest price</button>
+  </section>
+
+  <br>
+  <hr>
+  <br>
+
+  <article *ngFor="let product of products" style="display: flex">
+    <app-product-item
+      [product]="product"
+    ></app-product-item>
+  
+    <button (click)="onRedeemProduct(product)">Redeem product</button>
+  </article>
+</section>
