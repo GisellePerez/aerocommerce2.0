@@ -8,9 +8,9 @@ import { UserData, updatedPointsResponse } from './interfaces/user.interface';
   providedIn: 'root'
 })
 export class ApiHandlerService {
-
   public userData: UserData = null;
   public userPointsUpdated: EventEmitter<boolean> = new EventEmitter(false);
+  public productRedeemed: EventEmitter<string> = new EventEmitter(null);
   private apiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTJjNjYzYTQzNzg1MTAwNmVkZDM3ZmQiLCJpYXQiOjE1Nzk5NjgwNTh9.KdwfqiR1qpBIpZPjZMEXhuphujXQdNAsXJ8OjIDCRi4';
   private apiUrl = 'https://coding-challenge-api.aerolab.co';
   private httpOptions = {
@@ -37,12 +37,12 @@ export class ApiHandlerService {
 
   public addPoints() {
     const body = JSON.stringify({ 'amount': 1000 });
-
     return this.http.post(`${this.apiUrl}/user/points`, body, this.httpOptions);
   }
 
-  public redeemProduct(): Observable<updatedPointsResponse> {
-    return this.http.post<updatedPointsResponse>(`${this.apiUrl}/redeem`, this.httpOptions);
+  public redeemProduct(productId: string): Observable<updatedPointsResponse> {
+    const body = JSON.stringify({ 'productId': productId });
+    return this.http.post<updatedPointsResponse>(`${this.apiUrl}/redeem`, body, this.httpOptions);
   }
 
   public updateUserPoints() {

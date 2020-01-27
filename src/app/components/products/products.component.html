@@ -6,8 +6,8 @@
   <div>
     {{ products.length }}
 
-    <button> Prev </button>
-    <button> Next </button>
+    <button (click)="pagination(0)"> Prev </button>
+    <button (click)="pagination(1)"> Next </button>
   </div>
 
   <br>

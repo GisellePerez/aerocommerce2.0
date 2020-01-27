@@ -14,12 +14,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public userData: UserData = null;
   public products: Product[] = [];
+  public originalProducts: Product[] = [];
   private subs: Subscription[] = [];
 
   constructor(private apiHandler: ApiHandlerService) { 
     this.subs.push(
       this.apiHandler.userPointsUpdated.subscribe((_pointsUpdated: boolean) => {
         this.getUserData();
+      }),
+
+      this.apiHandler.productRedeemed.subscribe((productId: string) => {
+        this.redeemProduct(productId);
       })
     );
   }
@@ -51,7 +56,14 @@ export class AppComponent implements OnInit, OnDestroy {
     this.apiHandler.fetchProducts().subscribe((products: Product[]) => {
       console.log(products);
       this.products = products;
+      this.originalProducts = products;
     });
   }
 
+  private redeemProduct(productId: string) {
+    this.apiHandler.redeemProduct(productId).subscribe((productRedemeed) => {
+      console.log(productRedemeed);
+      this.getUserData();
+    });
+  }
 }

@@ -1,7 +1,7 @@
 export interface Product {
   _id: string,
   name: string,
-  const: number,
+  cost: number,
   category: string,
   img: ProductImg;
 }
