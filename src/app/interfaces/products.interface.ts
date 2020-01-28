@@ -16,3 +16,7 @@ export enum ProductsSortEnum {
   lowest = 'lowest',
   highest = 'highest'
 }
+
+export interface ProductRedeemResponse {
+  message: string;
+}

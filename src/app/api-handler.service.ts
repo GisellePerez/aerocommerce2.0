@@ -27,17 +27,17 @@ export class ApiHandlerService {
     return this.http.get<UserData>(`${this.apiUrl}/user/me`, this.httpOptions);
   }
 
-  public fetchUserHistory(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/user/history`, this.httpOptions);
+  public fetchUserHistory(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/user/history`, this.httpOptions);
   }
 
   public fetchProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.apiUrl}/products`, this.httpOptions);
   }
 
-  public addPoints() {
+  public addPoints(): Observable<updatedPointsResponse> {
     const body = JSON.stringify({ 'amount': 1000 });
-    return this.http.post(`${this.apiUrl}/user/points`, body, this.httpOptions);
+    return this.http.post<updatedPointsResponse>(`${this.apiUrl}/user/points`, body, this.httpOptions);
   }
 
   public redeemProduct(productId: string): Observable<updatedPointsResponse> {

@@ -1,13 +1,13 @@
-<section class="products-container" *ngIf="products">
+<section class="products-container" *ngIf="slicedProducts">
   <br>
   <hr>
   <br>
   
   <div>
-    {{ products.length }}
+    {{ ((currentPage - 1) * this.itemsPerPage) + itemsPerPage }} of {{ products.length }}
 
-    <button (click)="pagination(0)"> Prev </button>
-    <button (click)="pagination(1)"> Next </button>
+    <button (click)="pageChange('prev')"> Prev </button>
+    <button (click)="pageChange('next')"> Next </button>
   </div>
 
   <br>
@@ -25,7 +25,7 @@
   <hr>
   <br>
 
-  <article *ngFor="let product of products" style="display: flex">
+  <article *ngFor="let product of slicedProducts" style="display: flex">
     <app-product-item
       [product]="product"
     ></app-product-item>

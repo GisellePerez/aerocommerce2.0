@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiHandlerService } from './api-handler.service';
-import { Product } from './interfaces/products.interface';
+import { Product, ProductRedeemResponse } from './interfaces/products.interface';
 import { UserData } from './interfaces/user.interface';
 import { Subscription } from 'rxjs';
 
@@ -32,7 +32,6 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getUserData();
     this.getUserHistory();
-    this.getProductsList();
   }
 
   ngOnDestroy() {
@@ -41,7 +40,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private getUserData(): void {
     this.apiHandler.fetchUserData().subscribe((userData: UserData) => {
-      console.log(userData);
       this.userData = userData;
     });
   }
@@ -52,17 +50,8 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  private getProductsList() {
-    this.apiHandler.fetchProducts().subscribe((products: Product[]) => {
-      console.log(products);
-      this.products = products;
-      this.originalProducts = products;
-    });
-  }
-
   private redeemProduct(productId: string) {
-    this.apiHandler.redeemProduct(productId).subscribe((productRedemeed) => {
-      console.log(productRedemeed);
+    this.apiHandler.redeemProduct(productId).subscribe((_productRedemeed: ProductRedeemResponse) => {
       this.getUserData();
     });
   }
