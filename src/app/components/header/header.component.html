@@ -1,8 +1,14 @@
 <header>
-  <div *ngIf="userData">
-    <p>{{ userData.name }}</p>
-    <p>{{ userData.points }}</p>
+  <div class="logo-container">
+    <img src="assets/aerolab-logo.svg" alt="aerolab-kite-logo">
   </div>
 
-  <button (click)="onGetMorePoints()">Get more points</button>
+  <div class="user-info-container">
+    <div *ngIf="userData" class="user-info">
+      <p class="user-name">{{ userData.name }}</p>
+      <p class="user-points">{{ userData.points }}</p>
+    </div>
+  
+    <button (click)="onGetMorePoints()">Get more points</button>
+  </div>
 </header>

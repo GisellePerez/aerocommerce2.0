@@ -2,7 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from './interfaces/products.interface';
-import { UserData, updatedPointsResponse } from './interfaces/user.interface';
+import { UserData, updatedPointsResponse, RedeemHistory } from './interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -27,8 +27,8 @@ export class ApiHandlerService {
     return this.http.get<UserData>(`${this.apiUrl}/user/me`, this.httpOptions);
   }
 
-  public fetchUserHistory(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/user/history`, this.httpOptions);
+  public fetchUserHistory(): Observable<RedeemHistory[]> {
+    return this.http.get<RedeemHistory[]>(`${this.apiUrl}/user/history`, this.httpOptions);
   }
 
   public fetchProducts(): Observable<Product[]> {
@@ -45,7 +45,7 @@ export class ApiHandlerService {
     return this.http.post<updatedPointsResponse>(`${this.apiUrl}/redeem`, body, this.httpOptions);
   }
 
-  public updateUserPoints() {
+  public updateUserPoints(): void {
     this.addPoints().subscribe((newPoints: updatedPointsResponse) => {
       this.userData.points = newPoints['New Points'];
     });

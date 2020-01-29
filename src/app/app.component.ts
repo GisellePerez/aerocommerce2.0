@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ApiHandlerService } from './api-handler.service';
 import { Product, ProductRedeemResponse } from './interfaces/products.interface';
-import { UserData } from './interfaces/user.interface';
+import { UserData, RedeemHistory } from './interfaces/user.interface';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private getUserHistory() {
-    this.apiHandler.fetchUserHistory().subscribe((userHistory) => {
+    this.apiHandler.fetchUserHistory().subscribe((userHistory: RedeemHistory[]) => {
       console.log(userHistory);
     });
   }
@@ -53,6 +53,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private redeemProduct(productId: string) {
     this.apiHandler.redeemProduct(productId).subscribe((_productRedemeed: ProductRedeemResponse) => {
       this.getUserData();
+      // this.getUserHistory(); @TODO: check if this is necessary since userData has a redeemHistory property
     });
   }
 }

@@ -1,0 +1,27 @@
+.products-container {
+  h1 {
+
+  }
+
+  .top-section-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .top-section-actions-right {
+      display: flex;
+    }
+  }
+
+  .products-list {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+
+    .product-item {
+      width: 24%;
+    }
+  }
+}

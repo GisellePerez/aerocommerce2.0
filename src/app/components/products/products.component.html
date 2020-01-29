@@ -1,35 +1,50 @@
 <section class="products-container" *ngIf="slicedProducts">
-  <br>
-  <hr>
-  <br>
-  
-  <div>
-    {{ ((currentPage - 1) * this.itemsPerPage) + itemsPerPage }} of {{ products.length }}
 
-    <button (click)="pageChange('prev')"> Prev </button>
-    <button (click)="pageChange('next')"> Next </button>
+  <h1 class="section-title">Electronics</h1>
+
+  <div class="top-section-actions">
+    <div class="top-section-actions-left">
+      <span class="products-counter">
+        {{ ((currentPage - 1) * this.itemsPerPage) + itemsPerPage }} of {{ products.length }}
+      </span>
+    </div>
+
+    <div class="top-section-actions-right">
+      <div class="sort-actions">
+        <span>Sort by</span>
+        <select class="sort-select" name="sort-by" (change)="onSortProducts($event.target.value)">
+          <option class="sort-option recent" [value]="productsSortEnum.recent">Most recent</option>
+          <option class="sort-option lowest" [value]="productsSortEnum.lowest">Lowest price</option>
+          <option class="sort-option highest" [value]="productsSortEnum.highest">Highest price</option>
+        </select>
+      </div>
+  
+      <div class="navigation-arrows">
+        <button (click)="pageChange('prev')" [disabled]="currentPage === 1"> 
+          prev
+          <!-- <i>
+            <img src="assets/back.svg" alt="arrow-back">
+          </i> -->
+        </button>
+        <button (click)="pageChange('next')" [disabled]="currentPage === numberOfPages"> 
+          next
+          <!-- <i>
+            <img src="assets/next-1.svg" alt="arrow-next">
+          </i> -->
+        </button>
+      </div>
+    </div>
   </div>
 
-  <br>
-  <hr>
-  <br>
+  <hr class="separator">
 
-  <div class="products-actions">
-    <p>sort by</p>
-    <button (click)="onSortProducts(productsSortEnum.recent)">Most recent</button>
-    <button (click)="onSortProducts(productsSortEnum.lowest)">Lowest price</button>
-    <button (click)="onSortProducts(productsSortEnum.highest)">Highest price</button>
-  </div>
- 
-  <br>
-  <hr>
-  <br>
-
-  <article *ngFor="let product of slicedProducts" style="display: flex">
-    <app-product-item
-      [product]="product"
-    ></app-product-item>
-  
-    <button (click)="onRedeemProduct(product)">Redeem product</button>
-  </article>
+  <section class="products-list">
+    <article class="product-item" *ngFor="let product of slicedProducts">
+      <app-product-item
+        [product]="product"
+      ></app-product-item>
+    
+      <button (click)="onRedeemProduct(product)">Redeem product</button>
+    </article>
+  </section>
 </section>

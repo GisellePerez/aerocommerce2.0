@@ -1,0 +1,34 @@
+header {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo-container {
+    width: 2rem;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .user-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    p {
+      margin: 0;
+
+      &.user-name {
+        font-weight: 600;
+      }
+
+      &.user-points {
+        font-weight: 600;
+        color: rgb(75, 75, 75);
+      }
+    }
+  }
+}

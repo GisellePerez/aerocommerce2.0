@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, OnChanges, AfterViewChecked, AfterContentChecked, AfterContentInit, SimpleChanges } from '@angular/core';
-import { Product, ProductsSortEnum, ProductRedeemResponse } from 'src/app/interfaces/products.interface';
+import { Component, OnInit } from '@angular/core';
+import { Product, ProductsSortEnum } from 'src/app/interfaces/products.interface';
 import * as _ from 'lodash';
 import { ApiHandlerService } from 'src/app/api-handler.service';
 
@@ -13,6 +13,7 @@ export class ProductsComponent implements OnInit {
   public products: Product[] =  [];
   public productsSortEnum = ProductsSortEnum;
   public slicedProducts: Product[] = [];
+  public numberOfPages: number = 0;
   private originalProducts: Product[] = [];
   private itemsPerPage: number = 16;
   private currentPage: number = 1;
@@ -61,8 +62,8 @@ export class ProductsComponent implements OnInit {
     this.splitProductsPerPage();
   } 
 
-  private getNumberOfPages(): number {
-    return Math.ceil(this.products.length / this.itemsPerPage);
+  private getNumberOfPages(): void {
+    this.numberOfPages = Math.ceil(this.products.length / this.itemsPerPage);
   }
 
   private splitProductsPerPage() {
