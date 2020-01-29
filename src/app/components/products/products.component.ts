@@ -28,11 +28,7 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() { }
-
-  public onRedeemProduct(product: Product) {
-    this.apiHandler.productRedeemed.emit(product._id);
-  }
-
+  
   public onSortProducts(sortType: string) {
     let originalProductsCopy: Product[] = _.cloneDeep(this.originalProducts);
 

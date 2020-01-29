@@ -1,3 +1,19 @@
-<div *ngIf="product">
-  <p>{{ product.name }}</p>
-</div>
+<article *ngIf="product" class="product">
+  <div class="product-image-container">
+    <img class="product-image" [src]="product.img.url" [alt]="product.name">
+  </div>
+
+  <div class="product-details-container">
+    <div class="product-details">
+      <p class="product-name">{{ product.name }}</p>
+      <p class="product-category">{{ product.category }}</p>
+    </div>
+    
+    <p class="product-cost">{{ product.cost }}</p>
+  </div>
+
+</article>
+
+<article class="product-hover">
+  <button (click)="onRedeemProduct(product)">Redeem product</button>
+</article>

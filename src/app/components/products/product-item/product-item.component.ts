@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/interfaces/products.interface';
+import { ApiHandlerService } from 'src/app/api-handler.service';
 
 @Component({
   selector: 'app-product-item',
@@ -11,9 +12,13 @@ export class ProductItemComponent implements OnInit {
   @Input()
   public product: Product = null;
 
-  constructor() { }
+  constructor(private apiHandler: ApiHandlerService) { }
 
   ngOnInit() {
+  }
+
+  public onRedeemProduct(product: Product) {
+    this.apiHandler.productRedeemed.emit(product._id);
   }
 
 }

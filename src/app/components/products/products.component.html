@@ -39,12 +39,9 @@
   <hr class="separator">
 
   <section class="products-list">
-    <article class="product-item" *ngFor="let product of slicedProducts">
-      <app-product-item
+      <app-product-item class="product-item" 
+        *ngFor="let product of slicedProducts"
         [product]="product"
       ></app-product-item>
-    
-      <button (click)="onRedeemProduct(product)">Redeem product</button>
-    </article>
   </section>
 </section>
