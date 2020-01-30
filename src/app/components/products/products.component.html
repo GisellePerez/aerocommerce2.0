@@ -21,22 +21,16 @@
   
       <div class="navigation-arrows">
         <button (click)="pageChange('prev')" [disabled]="currentPage === 1"> 
-          prev
-          <!-- <i>
-            <img src="assets/back.svg" alt="arrow-back">
-          </i> -->
+          <i class="icon-back"></i>
         </button>
         <button (click)="pageChange('next')" [disabled]="currentPage === numberOfPages"> 
-          next
-          <!-- <i>
-            <img src="assets/next-1.svg" alt="arrow-next">
-          </i> -->
+          <i class="icon-next-1"></i>
         </button>
       </div>
     </div>
   </div>
 
-  <hr class="separator">
+  <!-- <hr class="separator"> -->
 
   <section class="products-list">
       <app-product-item class="product-item" 

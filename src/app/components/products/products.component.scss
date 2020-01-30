@@ -1,16 +1,55 @@
 .products-container {
-  h1 {
+  max-width: 90%;
+  margin: 0 auto;
+  padding-top: 2rem;
 
+  h1 {
+    margin: 1rem;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: #4e4e4e;
   }
 
   .top-section-actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0.5rem 1rem;
 
     .top-section-actions-right {
       display: flex;
+      align-items: center;
+
+      .navigation-arrows {
+        button {
+          background: transparent;
+          border: none;
+          padding: 0.5rem 0.6rem;
+
+          i {
+            font-weight: 800;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          &:disabled {
+            i {
+              color: rgb(184, 184, 184);
+            }
+
+            &:hover {
+              cursor: default;
+            }
+          }
+        }
+      }
     }
+  }
+
+  .separator {
+    margin: 0 1rem;
   }
 
   .products-list {

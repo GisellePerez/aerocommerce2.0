@@ -3,12 +3,14 @@
     <img src="assets/aerolab-logo.svg" alt="aerolab-kite-logo">
   </div>
 
-  <div class="user-info-container">
-    <div *ngIf="userData" class="user-info">
+  <div class="user-info-container"  *ngIf="userData">
+    <div class="user-info">
       <p class="user-name">{{ userData.name }}</p>
       <p class="user-points">{{ userData.points }}</p>
     </div>
   
-    <button (click)="onGetMorePoints()">Get more points</button>
+    <div class="user-dropdown">
+      <button (click)="onGetMorePoints()">Get more points</button>
+    </div>
   </div>
 </header>
