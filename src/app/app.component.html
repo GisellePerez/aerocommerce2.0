@@ -1,9 +1,6 @@
 <div>
   <app-header *ngIf="userData"
     [userData]="userData"
-  ></app-header
-    >
-    <!-- [products]="products"
-    [originalProducts]="originalProducts" -->
-  <app-products></app-products>
+  ></app-header>
+  <app-products [userData]="userData"></app-products>
 </div>

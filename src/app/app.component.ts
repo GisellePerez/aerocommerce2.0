@@ -53,7 +53,6 @@ export class AppComponent implements OnInit, OnDestroy {
   private redeemProduct(productId: string) {
     this.apiHandler.redeemProduct(productId).subscribe((_productRedemeed: ProductRedeemResponse) => {
       this.getUserData();
-      // this.getUserHistory(); @TODO: check if this is necessary since userData has a redeemHistory property
     });
   }
 }

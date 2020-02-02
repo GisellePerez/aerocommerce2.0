@@ -1,4 +1,12 @@
-<article *ngIf="product" class="product">
+<article *ngIf="product && userData !== null" 
+  class="product" 
+  [ngClass]="productIsAffordable ? 'affordable' : 'not-affordable'"
+>
+
+  <div class="fav-container">
+    <i class="icon-star"></i>
+  </div>
+
   <div class="product-image-container">
     <img class="product-image" [src]="product.img.url" [alt]="product.name">
   </div>
@@ -9,11 +17,29 @@
       <p class="product-category">{{ product.category }}</p>
     </div>
     
-    <p class="product-cost">{{ product.cost }}</p>
+    <p class="product-cost">
+      <span>
+        <i class="icon-star"></i>
+      </span>
+      <span>
+        {{ product.cost }}
+      </span>
+    </p>
   </div>
 
-</article>
+  <article class="product-hover">
+    <button *ngIf="productIsAffordable"
+      class="redeem-button" 
+      (click)="onRedeemProduct(product)"
+    >
+      Redeem product
+    </button>
 
-<article class="product-hover">
-  <button (click)="onRedeemProduct(product)">Redeem product</button>
+    <p *ngIf="!productIsAffordable"
+      class="missing-points-text"
+    >
+      <span class="first-line">Sorry. You need</span>
+      <span class="second-line">{{ missingPoints }} points.</span>
+    </p>
+  </article>
 </article>

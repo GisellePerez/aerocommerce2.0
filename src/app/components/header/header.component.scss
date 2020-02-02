@@ -17,18 +17,53 @@ header {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    border-left: 1px solid #b8b8b8;
     
-    p {
-      margin: 0;
+    .user-info {
+      display: flex;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      // border-left: 1px solid #b8b8b8;
+      margin:0.5rem;
 
-      &.user-name {
-        font-weight: 600;
+      .user-icon-container {
+        padding: 0.5rem;
+        border-radius: 5px;
+        font-size: 1rem;
+
+        i {
+          font-size: 1.5rem;
+          // border-radius: 54px;
+          box-sizing: border-box;
+          font-weight: 800;
+        }
       }
 
-      &.user-points {
-        font-weight: 600;
-        color: rgb(75, 75, 75);
+      .user-details-container {
+        p {
+          margin: 0;
+          font-weight: 800;
+    
+          &.user-name {
+            color: #4e4e4e;
+          }
+    
+          &.user-points {
+            color: #808080;
+            font-weight: 800;
+            font-size: 0.9rem;
+          }
+        }
+      }
+
+      &:hover {
+        // background-color: #e0e0e0;
+        // background-color: #e0e0e0;
+        background-color: #e2e2e2;
+        border-radius: 10px;
+        cursor: pointer;
       }
     }
+
   }
 }

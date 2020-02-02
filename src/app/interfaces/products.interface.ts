@@ -11,10 +11,19 @@ export interface ProductImg {
   hdUrl: string;
 }
 
-export enum ProductsSortEnum {
-  recent = 'recent',
-  lowest = 'lowest',
-  highest = 'highest'
+export const ProductsSortEnum = {
+  recent: {
+    value: 'recent',
+    label: 'Most recent'
+  },
+  lowest: { 
+    value: 'lowest', 
+    label: 'Lowest price' 
+  },
+  highest: { 
+    value: 'highest', 
+    label: 'Highest price'
+  }
 }
 
 export interface ProductRedeemResponse {

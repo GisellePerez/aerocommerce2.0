@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product, ProductsSortEnum } from 'src/app/interfaces/products.interface';
 import * as _ from 'lodash';
 import { ApiHandlerService } from 'src/app/api-handler.service';
+import { UserData } from 'src/app/interfaces/user.interface';
 
 @Component({
   selector: 'app-products',
@@ -10,10 +11,15 @@ import { ApiHandlerService } from 'src/app/api-handler.service';
 })
 export class ProductsComponent implements OnInit {
   
+  @Input() 
+  public userData: UserData = null;
+  
   public products: Product[] =  [];
   public productsSortEnum = ProductsSortEnum;
   public slicedProducts: Product[] = [];
   public numberOfPages: number = 0;
+  public displayDropdown = false;
+  public currentSortOption: string = '';
   private originalProducts: Product[] = [];
   private itemsPerPage: number = 16;
   private currentPage: number = 1;
@@ -23,30 +29,37 @@ export class ProductsComponent implements OnInit {
       this.products = products;
       this.originalProducts = products;
       this.getNumberOfPages();
-      this.onSortProducts(ProductsSortEnum.recent);
+      this.onSortProducts(ProductsSortEnum.recent.value);
     })
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.currentSortOption = this.currentSortOption ? this.currentSortOption : this.productsSortEnum.recent.label;
+  }
   
-  public onSortProducts(sortType: string) {
-    let originalProductsCopy: Product[] = _.cloneDeep(this.originalProducts);
-
-    switch(sortType) {
-      case ProductsSortEnum.lowest:
-        this.products = originalProductsCopy.sort((a, b) => a.cost - b.cost);
-        break;
+  public onSortProducts(sortOption: string) {
+    if (this.currentSortOption !== sortOption) {
+      let originalProductsCopy: Product[] = _.cloneDeep(this.originalProducts);
       
-      case ProductsSortEnum.highest:
-        this.products = originalProductsCopy.sort((a, b) => b.cost - a.cost);
-        break; 
-      
-      default:
-        this.products = this.originalProducts;
-        break;
+      switch(sortOption) {
+        case ProductsSortEnum.lowest.value:
+          this.products = originalProductsCopy.sort((a, b) => a.cost - b.cost);
+           this.currentSortOption = ProductsSortEnum.lowest.label;
+          break;
+        
+        case ProductsSortEnum.highest.value:
+          this.products = originalProductsCopy.sort((a, b) => b.cost - a.cost);
+           this.currentSortOption =  ProductsSortEnum.highest.label;
+          break; 
+        
+        default:
+          this.products = this.originalProducts;
+           this.currentSortOption = ProductsSortEnum.recent.label;
+          break;
+      }
+      this.currentPage = 1;
+      this.splitProductsPerPage();
     }
-    this.currentPage = 1;
-    this.splitProductsPerPage();
   }
 
   public pageChange(pageNavigation: string) {
@@ -60,6 +73,10 @@ export class ProductsComponent implements OnInit {
 
   private getNumberOfPages(): void {
     this.numberOfPages = Math.ceil(this.products.length / this.itemsPerPage);
+  }
+
+  public toggleDisplayDropdown() :void {
+    this.displayDropdown = !this.displayDropdown;
   }
 
   private splitProductsPerPage() {

@@ -1,4 +1,8 @@
-<section class="products-container" *ngIf="slicedProducts">
+<section *ngIf="!slicedProducts || !userData">
+  loading...
+</section>
+
+<section class="products-container" *ngIf="slicedProducts && userData">
 
   <h1 class="section-title">Electronics</h1>
 
@@ -10,13 +14,31 @@
     </div>
 
     <div class="top-section-actions-right">
-      <div class="sort-actions">
-        <span>Sort by</span>
-        <select class="sort-select" name="sort-by" (change)="onSortProducts($event.target.value)">
-          <option class="sort-option recent" [value]="productsSortEnum.recent">Most recent</option>
-          <option class="sort-option lowest" [value]="productsSortEnum.lowest">Lowest price</option>
-          <option class="sort-option highest" [value]="productsSortEnum.highest">Highest price</option>
-        </select>
+      <div class="sort-actions" (click)="toggleDisplayDropdown()">
+        <span class="sort-by">Sort by</span>
+
+        <div class="sort-dropdown">
+          <span class="current-sort-option" *ngIf="currentSortOption"> 
+            {{ currentSortOption }} 
+          </span>
+          <span class="arrow-down">
+            <i class="arrow-icon"></i>
+          </span>
+        </div>
+        <ul class="sort-by-list" *ngIf="displayDropdown">
+          <li class="sort-option recent" 
+            (click)="onSortProducts(productsSortEnum.recent.value)">
+            <span> Most recent </span> 
+          </li>
+          <li class="sort-option lowest" 
+            (click)="onSortProducts(productsSortEnum.lowest.value)">
+            <span> Lowest price </span> 
+          </li>
+          <li class="sort-option highest" 
+            (click)="onSortProducts(productsSortEnum.highest.value)">
+            <span> Highest price </span> 
+          </li>
+        </ul>
       </div>
   
       <div class="navigation-arrows">
@@ -30,12 +52,11 @@
     </div>
   </div>
 
-  <!-- <hr class="separator"> -->
-
   <section class="products-list">
-      <app-product-item class="product-item" 
-        *ngFor="let product of slicedProducts"
-        [product]="product"
-      ></app-product-item>
+    <app-product-item class="product-item" 
+      *ngFor="let product of slicedProducts"
+      [product]="product"
+      [userData]="userData"
+    ></app-product-item>
   </section>
 </section>

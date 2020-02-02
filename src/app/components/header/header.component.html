@@ -5,8 +5,13 @@
 
   <div class="user-info-container"  *ngIf="userData">
     <div class="user-info">
-      <p class="user-name">{{ userData.name }}</p>
-      <p class="user-points">{{ userData.points }}</p>
+      <div class="user-icon-container">
+        <i class="icon-avatar"></i>
+      </div>
+      <div class="user-details-container">
+        <p class="user-name">{{ userData.name }}</p>
+        <p class="user-points">{{ userData.points }}</p>
+      </div>
     </div>
   
     <div class="user-dropdown">
