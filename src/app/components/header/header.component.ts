@@ -12,15 +12,21 @@ export class HeaderComponent implements OnInit {
   @Input()
   public userData: UserData = null;
 
+  public displayUserDropdown = false;
+
   constructor(private apiHandler: ApiHandlerService) { }
 
   ngOnInit() {
   }
 
-  public onGetMorePoints() {
+  public onGetMorePoints(): void {
     this.apiHandler.addPoints().subscribe((_newPoints: updatedPointsResponse) => {
       this.apiHandler.userPointsUpdated.emit(true);
     });
+  }
+
+  public toggleDisplayUserDropdown(): void {
+    this.displayUserDropdown = !this.displayUserDropdown;
   }
 
 }

@@ -4,7 +4,7 @@
   </div>
 
   <div class="user-info-container"  *ngIf="userData">
-    <div class="user-info">
+    <div class="user-info" (click)="toggleDisplayUserDropdown()">
       <div class="user-icon-container">
         <i class="icon-avatar"></i>
       </div>
@@ -12,10 +12,25 @@
         <p class="user-name">{{ userData.name }}</p>
         <p class="user-points">{{ userData.points }}</p>
       </div>
+
+      <ul class="user-dropdown-list" *ngIf="displayUserDropdown">
+        <li class="user-option get-points">
+          <i class="icon-coin"></i>
+          <button (click)="onGetMorePoints()">Get more points</button>
+        </li>
+        <li class="user-option settings">
+          <i class="icon-settings"></i>
+          <span>Settings</span>
+        </li>
+        <li class="user-option logout">
+          <i class="icon-logout"></i>
+          <span>Logout</span>
+        </li>
+      </ul>
     </div>
   
-    <div class="user-dropdown">
+    <!-- <div class="user-dropdown">
       <button (click)="onGetMorePoints()">Get more points</button>
-    </div>
+    </div> -->
   </div>
 </header>

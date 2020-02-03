@@ -1,7 +1,7 @@
 .products-container {
   max-width: 90%;
   margin: 0 auto;
-  padding-top: 2rem;
+  padding: 2rem 0;
 
   h1 {
     margin: 1rem 0;
@@ -23,7 +23,6 @@
       .sort-actions {
         background: #fff;
         padding: 0.5rem 1rem;
-        border-radius: 5px;
         box-shadow: 0px 2px 5px #e4e4e4;
         font-size: 0.9rem;
         display: flex;
@@ -71,10 +70,9 @@
           left: 0;
           right: 0px;    
           background: white;
-          transition: all 0.3s ease-out;
+          transition: all 0.3s linear;
           list-style: none;
           padding: 0;
-          border-radius: 5px;
           box-shadow: 0px 2px 5px #e4e4e4;
           z-index: 3;
           
@@ -86,7 +84,7 @@
               width: 100%;
               box-sizing: border-box;
               text-decoration: none;
-              transition: all 0.3s ease-out;
+              transition: all 0.3s linear;
 
               span {
                 display: block;
@@ -97,21 +95,9 @@
                 border-bottom: 1px solid #e4e4e4;
               }
 
-              &:first-child {
-                border-radius: 5px 5px 0 0;
-              }
-
-              &:last-child {
-                border-radius: 0 0 5px 5px;
-              }
-
               &:hover {
                 background-color: #e2e2e2;
-
-
-                // span {
-                //   color: #fff;
-                // }
+                transition: all 0.3s linear;
               }
             }
           }
@@ -129,16 +115,16 @@
           i {
             font-weight: 800;
             padding: 0.5rem;
-            background: #fff;
-            border-radius: 5px;
+            background: #fff;  
             box-shadow: 0px 2px 5px #e4e4e4;
             font-size: 1rem;
           }
 
           &:hover:not(:disabled) {
             cursor: pointer;
-
+            
             i {
+              transition: all 0.3s linear;
               background-color: orange;
               color: #fff;
             }

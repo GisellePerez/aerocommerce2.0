@@ -18,28 +18,17 @@
     </div>
     
     <p class="product-cost">
-      <span>
-        <i class="icon-star"></i>
-      </span>
+      <i class="icon-coin"></i>
       <span>
         {{ product.cost }}
       </span>
     </p>
   </div>
 
-  <article class="product-hover">
-    <button *ngIf="productIsAffordable"
-      class="redeem-button" 
-      (click)="onRedeemProduct(product)"
-    >
-      Redeem product
-    </button>
-
-    <p *ngIf="!productIsAffordable"
-      class="missing-points-text"
-    >
-      <span class="first-line">Sorry. You need</span>
-      <span class="second-line">{{ missingPoints }} points.</span>
-    </p>
-  </article>
+  <button class="redeem-button" 
+    (click)="onRedeemProduct(product)"
+    [disabled]="!productIsAffordable"
+  >
+    {{ productIsAffordable ? 'Redeem product' : 'You need ' + missingPoints + ' points.' }}
+  </button>
 </article>

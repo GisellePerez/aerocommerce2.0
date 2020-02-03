@@ -31,6 +31,10 @@ export class ProductItemComponent implements OnInit {
     this.apiHandler.productRedeemed.emit(product._id);
   }
 
+  // public onToggleFavorite(product: Product): void {
+  //   this.apiHandler.favoriteProduct.emit(product._id);
+  // }
+
   private checkIfProductIsAffordable(): void {
       this.productIsAffordable = this.userData.points >= this.product.cost;
       this.missingPoints = this.product.cost - this.userData.points;
