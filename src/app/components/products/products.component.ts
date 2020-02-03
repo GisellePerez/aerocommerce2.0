@@ -20,9 +20,9 @@ export class ProductsComponent implements OnInit {
   public numberOfPages: number = 0;
   public displayDropdown = false;
   public itemsPerPage: number = 16;
+  public currentPage: number = 1;
   public currentSortOption: string = '';
   private originalProducts: Product[] = [];
-  private currentPage: number = 1;
 
   constructor(private apiHandler: ApiHandlerService) {
     this.apiHandler.fetchProducts().subscribe((products: Product[]) => {
