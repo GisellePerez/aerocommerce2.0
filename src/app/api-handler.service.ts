@@ -11,6 +11,7 @@ export class ApiHandlerService {
   public userData: UserData = null;
   public userPointsUpdated: EventEmitter<boolean> = new EventEmitter(false);
   public productRedeemed: EventEmitter<string> = new EventEmitter(null);
+  public redeemingProduct: EventEmitter<{ redeeming: boolean, productId: string }> = new EventEmitter(null);
   private apiToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTJjNjYzYTQzNzg1MTAwNmVkZDM3ZmQiLCJpYXQiOjE1Nzk5NjgwNTh9.KdwfqiR1qpBIpZPjZMEXhuphujXQdNAsXJ8OjIDCRi4';
   private apiUrl = 'https://coding-challenge-api.aerolab.co';
   private httpOptions = {

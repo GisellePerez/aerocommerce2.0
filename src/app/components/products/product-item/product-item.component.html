@@ -27,8 +27,18 @@
 
   <button class="redeem-button" 
     (click)="onRedeemProduct(product)"
-    [disabled]="!productIsAffordable"
+    [disabled]="!productIsAffordable || (redeemingProduct && redeemingProduct.redeeming && redeemingProduct.productId === product._id)"
   >
-    {{ productIsAffordable ? 'Redeem product' : 'You need ' + missingPoints + ' points.' }}
+    <span *ngIf="!redeemingProduct || !redeemingProduct.redeeming || (redeemingProduct && redeemingProduct.redeeming && redeemingProduct.productId !== product._id)">
+      {{ 
+        productIsAffordable ? 
+        'Redeem product' : 
+        'You need ' + missingPoints + ' points.' 
+      }}
+    </span>
+
+    <span *ngIf="redeemingProduct && redeemingProduct.redeeming && redeemingProduct.productId === product._id">
+      Loading...
+    </span>
   </button>
 </article>

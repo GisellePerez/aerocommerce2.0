@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product, ProductsSortEnum } from 'src/app/interfaces/products.interface';
 import * as _ from 'lodash';
 import { ApiHandlerService } from 'src/app/api-handler.service';
@@ -9,7 +9,7 @@ import { UserData } from 'src/app/interfaces/user.interface';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit, OnChanges {
+export class ProductsComponent implements OnInit {
   
   @Input() 
   public userData: UserData = null;
@@ -35,12 +35,6 @@ export class ProductsComponent implements OnInit, OnChanges {
 
   ngOnInit() { 
     this.currentSortOption = this.currentSortOption ? this.currentSortOption : this.productsSortEnum.recent.label;
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes && changes.userData) {
-
-    }
   }
   
   public onSortProducts(sortOption: string) {
@@ -85,7 +79,7 @@ export class ProductsComponent implements OnInit, OnChanges {
     this.displayDropdown = !this.displayDropdown;
   }
 
-  private splitProductsPerPage() {
+  private splitProductsPerPage(): void {
     let productsCopy = _.cloneDeep(this.products);
     const startIndex = ((this.currentPage - 1) * this.itemsPerPage);
     const endIndex = startIndex + this.itemsPerPage;

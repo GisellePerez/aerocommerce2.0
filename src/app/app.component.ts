@@ -15,6 +15,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public userData: UserData = null;
   public products: Product[] = [];
   public originalProducts: Product[] = [];
+  public userHistory: RedeemHistory[] = [];
   private subs: Subscription[] = [];
 
   constructor(private apiHandler: ApiHandlerService) { 
@@ -46,13 +47,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private getUserHistory() {
     this.apiHandler.fetchUserHistory().subscribe((userHistory: RedeemHistory[]) => {
-      console.log(userHistory);
+      this.userHistory = userHistory;
     });
   }
 
   private redeemProduct(productId: string) {
+    this.apiHandler.redeemingProduct.emit({ redeeming: true, productId });
     this.apiHandler.redeemProduct(productId).subscribe((_productRedemeed: ProductRedeemResponse) => {
       this.getUserData();
+      this.apiHandler.redeemingProduct.emit({ redeeming: false, productId });
     });
   }
 }
