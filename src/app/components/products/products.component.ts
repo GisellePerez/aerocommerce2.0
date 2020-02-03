@@ -19,9 +19,9 @@ export class ProductsComponent implements OnInit {
   public slicedProducts: Product[] = [];
   public numberOfPages: number = 0;
   public displayDropdown = false;
+  public itemsPerPage: number = 16;
   public currentSortOption: string = '';
   private originalProducts: Product[] = [];
-  private itemsPerPage: number = 16;
   private currentPage: number = 1;
 
   constructor(private apiHandler: ApiHandlerService) {
