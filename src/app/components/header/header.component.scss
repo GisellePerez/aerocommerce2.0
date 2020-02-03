@@ -6,7 +6,7 @@ header {
   padding: 0;
 
   .logo-container {
-    width: 2rem;
+    width: 3rem;
     padding-left: 1.5rem;
 
     img {
@@ -24,7 +24,7 @@ header {
       display: flex;
       align-items: center;
       box-shadow: 0 1px 6px #e4e4e4;
-      padding: 1rem 1.5rem;
+      padding: 0.7rem 1.2rem;
       position: relative;
 
       .user-icon-container {
@@ -45,7 +45,7 @@ header {
           
           &.user-name {
             color: #4e4e4e;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 800;
           }
     
@@ -53,11 +53,16 @@ header {
             font-size: 0.9rem;
             color: #808080;
             font-weight: 600;
+
+            i {
+              padding-top: 2px;
+              font-weight: 600;
+            }
           }
         }
       }
 
-      &:hover {
+      &:hover, &.active {
         background-color: orange;
         transition: all 0.3s ease-out;
         cursor: pointer;
@@ -77,7 +82,7 @@ header {
 
       .user-dropdown-list {
         position: absolute;
-        top: 80%;
+        top: 90%;
         left: 0;
         right: 0px;    
         background: white;
@@ -125,6 +130,37 @@ header {
               transition: all 0.3s linear;
               cursor: pointer;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 698px) { 
+  .user-info {
+    .user-details-container { 
+      display: flex;
+      align-items: center;
+      
+      p {
+        &.user-name {
+          padding-right: 0.5rem;
+        }
+
+        &.user-points {
+          font-size: 1rem !important;
+        }
+      }
+    }
+
+    .user-dropdown-list {
+      li {
+        &.user-option {
+          font-size: 1.2rem !important;
+
+          button { 
+            font-size: 1.2rem;
           }
         }
       }

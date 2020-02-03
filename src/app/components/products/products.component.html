@@ -1,5 +1,5 @@
-<section *ngIf="!slicedProducts || !userData">
-  loading...
+<section *ngIf="!slicedProducts || !userData" class="spinner-container">
+  <div class="spinner"></div>
 </section>
 
 <section class="products-container" *ngIf="slicedProducts && userData">

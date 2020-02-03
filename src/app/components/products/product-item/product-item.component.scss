@@ -17,6 +17,7 @@
       i {
         color: #4e4e4e;
         font-size: 1.4rem;
+        font-weight: 600;
         
         &:hover {
           color: orange;
@@ -73,6 +74,8 @@
 
             i {
               padding-right: 0.2rem;
+              padding-top: 2px;
+              font-weight: 600;
             }
         }
       }
@@ -102,4 +105,16 @@
           transition: all 0.3s ease-out;
         }
       }
+}
+
+@media only screen and (max-width: 1225px) {
+  .product {
+    .product-details-container {
+      flex-direction: column-reverse;
+
+      .product-cost {
+        padding-bottom: 0.5rem;
+      }
+    }
+  }
 }
